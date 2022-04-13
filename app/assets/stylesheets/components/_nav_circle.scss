@@ -14,15 +14,15 @@ body {
   --indicator-spacing: calc(var(--icon-size) / 8);
   --border-radius: calc(var(--icon-size) / 4);
   --nav-item-padding: calc(var(--icon-size) / 2);
-  --background-color: #333;
+  --background-color: var(--myblue-dark);
 }
 
 .navbar-container {
-  background-color: white;
+  background-color: var(--mywhite);
   border-radius: var(--border-radius);
   width: max-content;
   margin: 0 auto;
-  margin-top: 10rem;
+  margin-top: 6rem;
   padding: 0 calc(var(--nav-item-padding) * 1.5);
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .list a {
-  color: #333;
+  color: var(--myblue-dark);
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@ body {
 }
 
 .indicator::after {
-  background-color: hsl(100, 100%, 50%);
+  background-color: var(--myyellow);
   width: calc(var(--icon-size) * 2);
   height: calc(var(--icon-size) * 2);
   top: calc(-1 * var(--icon-size));
@@ -148,7 +148,7 @@ body {
   position: absolute;
   width: var(--border-radius);
   height: var(--border-radius);
-  background-color: white;
+  background-color: var(--mywhite);
   z-index: 1;
   top: calc(-1 * var(--indicator-spacing));
   left: calc(.2 * var(--indicator-spacing));
@@ -167,7 +167,7 @@ body {
   position: absolute;
   width: var(--border-radius);
   height: var(--border-radius);
-  background-color: white;
+  background-color: var(--mywhite);
   z-index: 1;
   top: calc(-1 * var(--indicator-spacing));
   left: calc(var(--icon-size) * 2 + -.2 * var(--indicator-spacing));

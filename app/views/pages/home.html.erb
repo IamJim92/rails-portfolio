@@ -1,9 +1,30 @@
-<div class="home-body">
+<div id="test" class="home-body">
 
-  <h1>Welcome home</h1>
+  <h1>👋 hello <span id="world">world</span>.</h1>
 
-  <div class="profile-pic"></div>
 
-  <div class="center-block"></div>
+  <div class="center-block">
+
+    <div class="black-window">
+      <div class="prompt">
+        <h1>></h1>
+        <h1 class="blink">_</h1>
+      </div>
+    </div>
+
+    <div class="text-box">
+      <h5>Hello and welcome to my portfolio! Thanks for taking the time to stop by and I hope you enjoy looking around.</h5>
+    </div>
+
+    <div class="profile-pic"></div>
+
+  </div>
 
 </div>
+
+<script>
+  function loadBody() {
+    const page1 = document.querySelector(".home-body")
+      page1.classList.add("load")
+  }
+</script>
