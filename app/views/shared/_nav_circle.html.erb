@@ -3,19 +3,19 @@
     <div style="--position: 0;" data-indicator class="indicator">
       <div class="corners"></div>
     </div>
-    <li><a href="#" class="active">
+    <li><a id="/" href="<%= root_path %>">
       <div class="icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"/></svg>
       </div>
       <div class="text">Home</div>
     </a></li>
-    <li><a href="#">
+    <li><a id="/pages/about" href="<%= pages_about_path %>">
       <div class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>
       </div>
       <div class="text">About Me</div>
     </a></li>
-    <li><a href="<%= pages_projects_path %>">
+    <li><a id="/pages/projects" href="<%= pages_projects_path %>">
       <div class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z"/></svg>
       </div>
@@ -27,21 +27,52 @@
 <script>
   const indicator = document.querySelector("[data-indicator]")
 
-  document.addEventListener("click", e => {
-    let anchor
-    if (e.target.matches("a")) {
-      anchor = e.target
-    } else {
-      anchor = e.target.closest("a")
-    }
-    if (anchor != null) {
-      const allAnchors = [...document.querySelectorAll("a")]
-      const index = allAnchors.indexOf(anchor)
-      indicator.style.setProperty("--position", index)
+
+//   document.addEventListener("click", e => {
+//   let anchor
+//   if (e.target.matches("a")) {
+//     anchor = e.target
+//   } else {
+//     anchor = e.target.closest("a")
+//   }
+//   if (anchor != null) {
+//     const allAnchors = [...document.querySelectorAll("a")]
+//     const index = allAnchors.indexOf(anchor)
+//     indicator.style.setProperty("--position", index)
+//     document.querySelectorAll("a").forEach(elem => {
+//       elem.classList.remove("active")
+//     })
+//     anchor.classList.add("active")
+//   }
+// })
+
+
+
+  if (window.location.pathname == '/') {
+      indicator.style.setProperty("--position", 0)
+  } else if (window.location.pathname == '/pages/about') {
+    indicator.style.setProperty("--position", 1)
+  } else if (window.location.pathname == '/pages/projects') {
+    indicator.style.setProperty("--position", 2)
+  }
+
+
+  window.onload = function() {
       document.querySelectorAll("a").forEach(elem => {
         elem.classList.remove("active")
       })
-      anchor.classList.add("active")
-    }
-  })
+
+
+      document.querySelectorAll("a").forEach(elem => {
+        console.log(elem);
+        console.log(elem.attributes);
+        if (elem.id == window.location.pathname) {
+          elem.classList.add("active")
+          console.log(elem);
+          //
+        }
+      })
+
+
+  }
 </script>
