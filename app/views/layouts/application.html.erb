@@ -10,9 +10,23 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script>
+      function loadAbout() {
+        const page2 = document.querySelector(".about-body")
+        page2.classList.add("load")
+      }
+
+      function loadHome() {
+        const page1 = document.querySelector(".home-body")
+        page1.classList.add("load")
+      }
+
+
       window.onload = function() {
         activeNav();
-        loadBody();
+        if (window.location.pathname == '/') {
+          loadHome();
+        } else if (window.location.pathname == '/pages/about')
+          loadAbout();
       }
     </script>
 
