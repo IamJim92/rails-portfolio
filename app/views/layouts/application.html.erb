@@ -10,6 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script>
+      function loadProjects() {
+        const page3 = document.querySelector(".projects-body")
+        page3.classList.add("load")
+      }
+
       function loadAbout() {
         const page2 = document.querySelector(".about-body")
         page2.classList.add("load")
@@ -25,8 +30,11 @@
         activeNav();
         if (window.location.pathname == '/') {
           loadHome();
-        } else if (window.location.pathname == '/pages/about')
+        } else if (window.location.pathname == '/pages/about') {
           loadAbout();
+        } else if (window.location.pathname == '/pages/projects') {
+          loadProjects();
+        }
       }
     </script>
 
